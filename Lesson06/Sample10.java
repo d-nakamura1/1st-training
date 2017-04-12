@@ -1,6 +1,6 @@
 import java.io.*;
 
-class SampleP4 {
+class Sample10 {
    public static void main(String[] args) throws IOException {
       System.out.println("成績を入力してください。(1～5)");
 
