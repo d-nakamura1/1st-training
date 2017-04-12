@@ -17,6 +17,7 @@ class SampleP5 {
             break;
          }
       }
+      
       //System.out.println(root);
       if (i <= root) {
          System.out.println("\"" + res + "\"は素数ではありません。");
