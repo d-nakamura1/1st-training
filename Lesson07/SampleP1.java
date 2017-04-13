@@ -9,7 +9,7 @@ class SampleP1 {
 
       int[] test = new int[5];
 
-      int max = 0;
+      int max = test[0];
       for (int i = 0; i < test.length; i++) {
          String str = br.readLine();
          int num = Integer.parseInt(str);
