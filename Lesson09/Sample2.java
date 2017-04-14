@@ -11,7 +11,7 @@ class Sample2 {
 
       System.out.println("正しくないガソリン量(－10)を指定してみます・・・。");
 
-      car1.setNumGas(1234, 20.5);
+      car1.setNumGas(1234, -10);
       car1.show();
    }
 }

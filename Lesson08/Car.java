@@ -6,7 +6,6 @@ class Car {
       System.out.println("ナンバーを調べました。");
       return num;
    }
-
    double getGas() {
       System.out.println("ガソリン量を調べました。");
       return gas;
@@ -16,7 +15,6 @@ class Car {
       num = n;
       System.out.println("ナンバーを\"" + num + "\"にしました。");
    }
-
    void setGas(double g) {
       gas = g;
       System.out.println("ガソリン量を\"" + gas + "\"にしました。");
