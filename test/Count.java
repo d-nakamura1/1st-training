@@ -28,23 +28,21 @@ class Count {
 
       for(int i = 0; i < 52; i++) {
          for(int j = 0; j < str.length(); j++) {
-            char x = str.charAt(j);
-            if(x == target[i]) {
+            if(target[i] == str.charAt(j);) {
                count++;
             }
          }
          if(count > max) {
             max = count;
          }
-         num[i] = count;
+         num[i] += count;
          count = 0;
       }
 
       while(max > 0) {
          for(int i = 0; i < num.length; i++) {
-            if(num[i] == max) {
+            if(num[i] >= max) {
                System.out.print("*");
-               num[i]--;
             } else {
                System.out.print(" ");
             }
