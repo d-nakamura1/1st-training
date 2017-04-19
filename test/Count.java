@@ -24,6 +24,7 @@ class Count {
       }
 
       int[] num = new int[52];
+      int max = 0;
 
       for(int i = 0; i < 52; i++) {
          for(int j = 0; j < str.length(); j++) {
@@ -32,14 +33,29 @@ class Count {
                count++;
             }
          }
+         if(count > max) {
+            max = count;
+         }
          num[i] = count;
          count = 0;
       }
 
-      for(int i = 0; i < target.length; i++) {
-         if(num[i] > 0) {
-            System.out.println(target[i] + "" + num[i]);
+      while(max > 0) {
+         for(int i = 0; i < num.length; i++) {
+            if(num[i] == max) {
+               System.out.print("*");
+               num[i]--;
+            } else {
+               System.out.print(" ");
+            }
          }
+         max--;
+         System.out.println("改行");
+      }
+      for(int i = 0; i < target.length; i++) {
+         // if(num[i] > 0) {
+            System.out.print(target[i]);
+         // }
       }
    }
 }
