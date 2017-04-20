@@ -1,3 +1,5 @@
+package pd;
+
 class Car {
    private int num;
    private double gas;

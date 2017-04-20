@@ -3,7 +3,7 @@ class Montekaruro {
 
       double x = 0.0;
       double y = 0.0;
-      int num = 1000000000;
+      int num = 10000000;
       double cnt = 0.0;
       for(int i = 0; i < num; i++) {
          x = Math.random();

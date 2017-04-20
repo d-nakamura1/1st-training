@@ -8,11 +8,12 @@ class En {
          if((x * x + y * y) < 1.0) {
             cnt++;
          }
-         x += 0.000001;
+         x += 0.0001;
          if(x >= 1) {
-            y += 0.000001;
+            y += 0.0001;
             x = 0.0;
          }
+         System.out.println(cnt);
       }
 
       System.out.println(cnt * 4);
