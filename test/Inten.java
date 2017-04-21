@@ -1,11 +1,11 @@
 class Inten {
    public static void main(String[] args) {
 
-      int x = 0;
-      int y = 0;
-      double cnt = 0.0;
+      long x = 0;
+      long y = 0;
+      long cnt = 0;
 
-      int num = 65536 * 2;
+      long num = 65536 * 16;
       while((y & num) < num) {
          if((x * x + y * y) < (num * num)) {
             cnt++;
@@ -16,6 +16,6 @@ class Inten {
          x &= ~num;
       }
       System.out.println(cnt);
-      System.out.println(cnt / (num * num) * 4.0);
+      System.out.println((double)cnt / (num * num) * 4);
    }
 }
