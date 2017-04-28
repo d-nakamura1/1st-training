@@ -8,7 +8,7 @@ class Sample10 {
       }
       BufferedReader br = null;
       try {
-         br = new BufferedReader(new FileReader(args[0]));
+         br = new BufferedReader(new InputStreamReader(new FileInputStream(args[0]),"UTF-8"));
 
          String str;
 

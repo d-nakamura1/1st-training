@@ -32,15 +32,14 @@ class SourceChecker {
             int cnt = 0;
             int numOfLine = 1;
             int errorFlag = 0;
-            List<Integer> point = new ArrayList<Integer>();
-            List<Character> brackets = new ArrayList<Character>();
+            List<BracketsDate> date = new ArrayList<BracketsDate>();
 
-            while((str = br.readLine()) != null) {
+            while((str = br.readLine()) != null) { //ファイル終わるまでループ
                String line = str + '\n';
                char moji;
 
                int num = 0;
-               while((moji = line.charAt(num)) != '\n') {
+               while((moji = line.charAt(num)) != '\n') { //一行終わるまでループ
                   if(flag == 1 && line.charAt(num + 1) == '\n') { //一行コメントの中
                      flag = 0;
                   } else if(flag == 2) { //複数行コメントの中
@@ -52,27 +51,20 @@ class SourceChecker {
                   } else if(flag == 4 && moji == '\'') { //文字の中
                      flag = 0;
                   } else { //括弧を探す
-                     if(moji == LEFT_BIC) {
-                        point.add(numOfLine * 1000 + (num + 1)); //行と文字数の登録
-                        brackets.add(LEFT_BIC);
+                     if(moji == LEFT_BIC || moji == LEFT_CIRCLE) {
+                        date.add(new BracketsDate(numOfLine, (num + 1), moji));
                         cnt++;
                      } else if(moji == RIGTH_BIC) {
-                        if(brackets.size() != 0 && brackets.get(brackets.size() - 1) == LEFT_BIC) {
-                           point.remove(point.size() - 1);
-                           brackets.remove(brackets.size() - 1);
+                        if(date.size() != 0 && date.get(date.size() - 1).getBrackets() == LEFT_BIC) {
+                           date.remove(date.size() - 1);
                         } else {
                            System.out.println(numOfLine + "行の" + (num + 1) + "文字目の\"" + moji + "\"に対する開始の括弧がありません。");
                            errorFlag = 1;
                         }
                         cnt++;
-                     } else if(moji == LEFT_CIRCLE) {
-                        point.add(numOfLine * 1000 + (num + 1)); //行と文字数の登録
-                        brackets.add(LEFT_CIRCLE);
-                        cnt++;
                      } else if(moji == RIGTH_CIRCLE) {
                         if(brackets.size() != 0 && brackets.get(brackets.size() - 1) == LEFT_CIRCLE) {
-                           point.remove(point.size() - 1);
-                           brackets.remove(brackets.size() - 1);
+                           date.remove(date.size() - 1);
                         } else {
                            System.out.println(numOfLine + "行の" + (num + 1) + "文字目の\"" + moji + "\"に対する開始の括弧がありません。");
                            errorFlag = 1;
@@ -131,9 +123,7 @@ class SourceChecker {
             }
          } finally {
             try {
-               if(br != null) {
-                  br.close();
-               }
+               br.close();
             } catch (IOException e) {
                System.out.println("入出力エラーです。");
             }
@@ -155,5 +145,27 @@ class SourceChecker {
       if (!m.find()){ //引数が.javaかどうか
          throw new JavaFileException();
       }
+   }
+}
+
+class BracketsDate {
+   private int row;
+   private int column;
+   private char brackets;
+
+   BracketsDate(int r, int c, char b) {
+      row = r;
+      column = c;
+      brackets = b;
+   }
+
+   getRow() {
+      return row;
+   }
+   getColumn() {
+      return column;
+   }
+   getBrackets() {
+      return brackets;
    }
 }
