@@ -41,16 +41,22 @@ class SourceChecker {
 
                int num = 0;
                while((moji = line.charAt(num)) != '\n') {
-                  if(flag == 1 && line.charAt(num + 1) == '\n') { //一行コメントの中
-                     flag = 0;
+                  if(flag == 1) { //一行コメントの中
+                     if(line.charAt(num + 1) == '\n') {
+                        flag = 0;
+                     }
                   } else if(flag == 2) { //複数行コメントの中
                      if(moji == '*' && line.charAt(num + 1) == '/') {
                         flag = 0;
                      }
-                  } else if(flag == 3 && moji == '\"') { //文字列の中
-                     flag = 0;
-                  } else if(flag == 4 && moji == '\'') { //文字の中
-                     flag = 0;
+                  } else if(flag == 3) { //文字列の中
+                     if(moji == '\"') {
+                        flag = 0;
+                     }
+                  } else if(flag == 4) { //文字の中
+                     if(moji == '\'') {
+                        flag = 0;
+                     }
                   } else { //括弧を探す
                      if(moji == LEFT_BIC) {
                         point.add(numOfLine * 1000 + (num + 1)); //行と文字数の登録
